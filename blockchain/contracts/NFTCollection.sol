@@ -3,9 +3,9 @@ pragma solidity ^0.8.0;
 
 import "@chainlink/contracts/src/v0.8/dev/VRFConsumerBaseV2.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-contract NFTCollection is ERC721, VRFConsumerBaseV2 {
+contract NFTCollection is ERC721URIStorage, VRFConsumerBaseV2 {
     VRFCoordinatorV2Interface immutable COORDINATOR;
     bytes32 immutable KEY_HASH;
     uint256 public randomResult;
@@ -29,9 +29,9 @@ contract NFTCollection is ERC721, VRFConsumerBaseV2 {
     mapping(uint256 => address) requestToSender;
     mapping(uint256 => uint256) requestToTokenId;
 
-    modifier onlyNftOwner() {
+    modifier onlyNftOwner(uint256 _tokenId) {
         require(
-            _isApprovedOrOwner(msg.sender, tokenId),
+            _isApprovedOrOwner(msg.sender, _tokenId),
             "The caller is not the owner!"
         );
         _;
@@ -69,31 +69,8 @@ contract NFTCollection is ERC721, VRFConsumerBaseV2 {
         _mintCharacter();
     }
 
-    function getCharacterStats(uint256 tokenId)
-        public
-        view
-        returns (
-            uint256,
-            uint256,
-            uint256,
-            uint256,
-            uint256,
-            uint256
-        )
-    {
-        return (
-            characters[tokenId].background,
-            characters[tokenId].clothes,
-            characters[tokenId].eyes,
-            characters[tokenId].fur,
-            characters[tokenId].hat,
-            characters[tokenId].mouth,
-            characters[tokenId].experience
-        );
-    }
-
-    function getTokenURI(uint256 tokenId) public view returns (string memory) {
-        return tokenURI(tokenId);
+    function getTokenURI(uint256 _tokenId) public view returns (string memory) {
+        return tokenURI(_tokenId);
     }
 
     function newRandomCharacter() public returns (uint256) {
@@ -103,11 +80,11 @@ contract NFTCollection is ERC721, VRFConsumerBaseV2 {
         return requestId;
     }
 
-    function setTokenURI(uint256 tokenId, string memory _tokenURI)
+    function setTokenURI(uint256 _tokenId, string memory _tokenURI)
         public
-        onlyNftOwner
+        onlyNftOwner(_tokenId)
     {
-        _setTokenURI(tokenId, _tokenURI);
+        _setTokenURI(_tokenId, _tokenURI);
     }
 
     function _mintCharacter() private {
