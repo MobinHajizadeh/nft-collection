@@ -1,0 +1,32 @@
+{
+    "tokenId": 0,
+    "name": "BAYC#0",
+    "description": "",
+    "image": "ipfs://QmNLijobERK4VhSDZdKjt5SrezdRM6k813qcSHd68f3Mqg",
+    "attributes": [
+        {
+            "trait_type": "background",
+            "value": 3
+        },
+        {
+            "trait_type": "clothes",
+            "value": 6
+        },
+        {
+            "trait_type": "eyes",
+            "value": 8
+        },
+        {
+            "trait_type": "fur",
+            "value": 0
+        },
+        {
+            "trait_type": "hat",
+            "value": 6
+        },
+        {
+            "trait_type": "mouth",
+            "value": 0
+        }
+    ]
+}
