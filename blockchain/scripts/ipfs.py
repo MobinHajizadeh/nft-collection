@@ -93,3 +93,4 @@ def main():
         generate_json(m, t)
         hash = upload_to_ipfs(f"BAYC_{id}.json")
         add_uri(hash)
+        os.chdir("../..")
