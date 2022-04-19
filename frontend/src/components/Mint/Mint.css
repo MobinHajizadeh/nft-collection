@@ -1,0 +1,10 @@
+.image {
+	height: 40vh;
+	border: 1px solid #ddd;
+	border-radius: 15px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
