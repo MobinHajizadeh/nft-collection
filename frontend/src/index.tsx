@@ -1,16 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ChainId, Config, DAppProvider } from '@usedapp/core';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
+const alchemyKey: string =
+  process.env.REACT_APP_ALCHEMY_KEY || `your alchemy key`;
+
+const config: Config = {
+  readOnlyChainId: ChainId.Rinkeby,
+  readOnlyUrls: {
+    [ChainId.Rinkeby]: `https://eth-rinkeby.alchemyapi.io/v2/${alchemyKey}`,
+  },
+  supportedChains: [ChainId.Rinkeby],
+};
+
+ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <DAppProvider config={config}>
+      <App />
+    </DAppProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
