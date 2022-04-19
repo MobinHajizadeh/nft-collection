@@ -1,0 +1,40 @@
+.button {
+	background-color: #7e7a19;
+	border: none;
+	border-radius: 40px;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 18px;
+	padding: 16px 31px;
+	text-decoration: none;
+	width: 20%;
+	margin-bottom: 20px;
+}
+
+.button:disabled {
+	background-color: #3d60d2;
+	opacity: 50%;
+}
+
+.loader {
+	border: 5px solid #ffffff;
+	border-top: 5px solid #3d60d2;
+	border-radius: 50%;
+	width: 18px;
+	height: 18px;
+	animation: spin 2s linear infinite;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
