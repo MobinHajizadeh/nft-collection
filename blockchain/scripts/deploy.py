@@ -20,4 +20,4 @@ def deploy_collection():
 
 def main():
     collection = deploy_collection()
-    print(f"Deployed to {collection} !")
+    print(f"Deployed at {collection} !")
